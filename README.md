@@ -10,7 +10,7 @@ cd server
 ```
 npm install
 ```
-* Run server
+* Start server
 ```
 npm start
 ```
@@ -24,7 +24,7 @@ cd client
 ```
 npm install
 ```
-* Run server
+* Run app in dev mode
 ```
 npm run dev
 ```

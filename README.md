@@ -28,4 +28,4 @@ npm install
 ```
 npm run dev
 ```
-* Open web browser in http://localhost:8080
+* Open web browser in http://localhost:8080/newurl

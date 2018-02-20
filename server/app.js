@@ -11,13 +11,42 @@ db.once("open", function(callback){
   console.log("Connection Succeeded");
 });
 
+
+/*
+
+// Connect to MongoDB Service on Bluemix
+else if(!appEnv.isLocal) {
+    var mongoDbUrl, mongoDbOptions = {};
+    var mongoDbCredentials = appEnv.services["compose-for-mongodb"][0].credentials;
+    var ca = [new Buffer(mongoDbCredentials.ca_certificate_base64, 'base64')];
+    mongoDbUrl = mongoDbCredentials.uri;
+    mongoDbOptions = {
+      mongos: {
+        ssl: true,
+        sslValidate: true,
+        sslCA: ca,
+        poolSize: 1,
+        reconnectTries: 1
+      }
+    };
+
+    console.log("Your MongoDB is running at ", mongoDbUrl);
+    mongoose.connect(mongoDbUrl, mongoDbOptions);
+    sessionDB = mongoDbUrl;
+}
+else{
+    console.log('Unable to connect to MongoDB.');
+}
+
+*/
+
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
-app.listen(process.env.PORT || 8081)
+app.listen(process.env.PORT || 3000)
 
-var Url = require("../models/url");
+var Url = require("./models/url");
 
 app.post('/urls', (req, res) => {
   var request = require('request');
@@ -47,6 +76,7 @@ app.post('/urls', (req, res) => {
 })
 
 app.get('/urls', (req, res) => {
+  console.log("GET urls");
   Url.find({}, function (error, urls) {
     if (error) { console.error(error); }
     res.send({

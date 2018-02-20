@@ -3,6 +3,10 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -18,7 +22,14 @@ const createLintingRule = () => ({
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
 })
-
+plugins: [
+  new webpack.DefinePlugin({
+    'process.env': {
+      //URLS_API: JSON.stringify("https://urlreaderserver.mybluemix.net/")
+      URLS_API: JSON.stringify("`http://localhost:8081")
+    }
+  })
+],
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -31,6 +42,7 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {

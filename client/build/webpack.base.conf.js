@@ -26,7 +26,7 @@ plugins: [
   new webpack.DefinePlugin({
     'process.env': {
       //URLS_API: JSON.stringify("https://urlreaderserver.mybluemix.net/")
-      URLS_API: JSON.stringify("`http://localhost:8081")
+      URLS_API: JSON.stringify('http://localhost:8081')
     }
   })
 ],
